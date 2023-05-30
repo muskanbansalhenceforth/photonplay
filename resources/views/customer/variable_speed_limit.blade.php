@@ -38,17 +38,14 @@ $seo_meta=[
 </style>
 <body>
 <!-- Modal Overlay and Image -->
-<div id="modalOverlay" class="modal-overlay" onclick="hideModal()">
-    <div id="modalContent" class="modal-content">
-        <img id="myImage" src="path_to_your_image.jpg" alt="Image">
-    </div>
-</div>
+
 
 <script>
-    function showModal() {
+    function showModal(imgurl) {
         var modalOverlay = document.getElementById("modalOverlay");
         var modalContent = document.getElementById("modalContent");
         var image = document.getElementById("myImage");
+        image.src=imgurl;
         modalOverlay.style.display = "block";
         image.style.display = "block";
         modalContent.style.width = image.width + "px";
@@ -98,7 +95,14 @@ $seo_meta=[
 
                                         <div class="thumb-image-item mb-3">
                                             <img src="{{asset('storage/'.$image->image)}}" alt="" class="img-fluid" style="height: 200px;width: 200px;">
-                                            <img src="{{asset('assets/customer/images/zoom-in.png')}}" alt="" onclick="showModal()" class="zoom-in">
+                                            <img src="{{asset('assets/customer/images/zoom-in.png')}}" alt="" onclick="showModal({{asset('storage/'.$image->image)}})" class="zoom-in">
+                                        </div>
+
+
+                                        <div id="modalOverlay" class="modal-overlay" onclick="hideModal()">
+                                            <div id="modalContent" class="modal-content">
+                                                <img id="myImage" src="{{asset('assets/customer/images/zoom-in.png')}}" alt="Image">
+                                            </div>
                                         </div>
 
                                     </div>
